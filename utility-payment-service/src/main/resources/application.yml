@@ -1,0 +1,22 @@
+server: 
+  port: ${PORT:0}
+spring:
+   application:
+      name: utility-payment-service
+   datasource:
+      url: jdbc:mysql://localhost:3306/db_banking?createDatabaseIfNotExist=true
+      username: root
+      password: Root@123
+      driver-class-name: com.mysql.cj.jdbc.Driver
+   jpa:
+      hibernate:
+         ddl-auto: update
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.MariaDBDialect
+eureka:
+   client:
+      service-url:
+         defaultZone: http://localhost:8081/eureka
+   instance:
+      instance-id: ${spring.cloud.client.hostname}:${spring.application.name}:${spring.application.instance_id:${random.value}}
